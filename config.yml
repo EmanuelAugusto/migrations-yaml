@@ -1,0 +1,23 @@
+databases:
+
+  example_db:
+    driver: mysql2
+    port: 3306
+    host: localhost
+    user: root
+    password: example
+    collation: utf8mb4_hungarian_ci
+    charset: utf8mb4
+    schemasFiles: schemas/db_tables.yml
+    dropAllTables: true
+
+  example_db_two:
+    driver: mysql2
+    port: 3306
+    host: localhost
+    user: root
+    password: example
+    collation: utf8mb4_hungarian_ci
+    charset: utf8mb4
+    schemasFiles: schemas/db_tables.yml
+    dropAllTables: true

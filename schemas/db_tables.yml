@@ -1,0 +1,49 @@
+tables:
+  - Persons:
+      fields:
+        PersonID: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        LastName: varchar(255)
+        FirstName: varchar(255)
+        Address: varchar(255)
+        City: int NOT NULL
+
+  - ContactsType:
+      fields:
+        Id: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        Type: varchar(255)
+
+  - ObjectLocal:
+      fields:
+        Id: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        ObjectName: varchar(255)
+        PersonID: int NOT NULL
+        ContactsLocalId: int NOT NULL
+      references:
+        - Persons: FOREIGN KEY (PersonID) REFERENCES {table}(PersonID)
+        - ContactsLocal: FOREIGN KEY (ContactsLocalId) REFERENCES {table}(Id)
+
+  - Contacts:
+      fields:
+        Id: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        PersonID: int NOT NULL
+        value: varchar(255)
+        Type: int
+      references:
+        - Persons: FOREIGN KEY (PersonID) REFERENCES {table}(PersonID)
+        - ContactsType: FOREIGN KEY (Type) REFERENCES {table}(Id)
+
+  - ContactsLocal:
+      fields:
+        Id: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        ContactID: int NOT NULL
+        name: varchar(255)
+      references:
+        - Contacts: FOREIGN KEY (ContactID) REFERENCES {table}(Id)
+
+  - UserAddress:
+      fields:
+        Id: int NOT NULL PRIMARY KEY AUTO_INCREMENT
+        PersonID: int NOT NULL
+        address: varchar(255)
+      references:
+        - Persons: FOREIGN KEY (PersonID) REFERENCES {table}(PersonID)
